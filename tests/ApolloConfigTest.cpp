@@ -1,13 +1,10 @@
 #include "ApolloConfig.hpp"
 #include "HttpClient.hpp"
-
+#include "RemoteConfigLongPollService.hpp"
 int main(){
-
-    apollocpp::ApolloConfig config("localhost:8080","aldd", "arvintzhang", "RJDLOG");
-    // config.fetchConfig();
-    config.fetchConfigJsonCache();
-    config.fetchConfigStrCache();
-    config.fetchConfigDatabases();
-    auto res = config.getConfigData();
+    apollocpp::RemoteConfigLongPollService longPollService("localhost:8080","aldd","arvintzhang");
+    longPollService.startLongPolling();
+    std::this_thread::sleep_for(std::chrono::seconds(200));
+    longPollService.stopLongPolling();
     return 0;
 }

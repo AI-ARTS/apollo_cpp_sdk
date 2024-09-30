@@ -20,15 +20,28 @@ file(GLOB HttpClient
     "${PROJECT_SOURCE_DIR}/src/HttpClient.cpp"
 )
 
+file(GLOB common
+    "${PROJECT_SOURCE_DIR}/src/common.cpp"
+)
+
+file(GLOB RemoteConfigLongPollService 
+    "${PROJECT_SOURCE_DIR}/src/RemoteConfigLongPollService .cpp"
+)
+
+
+
 find_package(nlohmann_json 3.2.0 REQUIRED)
 find_package(CURL REQUIRED)
 
 add_library(APOLLOCONFIG SHARED ${ApolloConfig})
 add_library(HTTPCLIENT SHARED ${HttpClient})
+add_library(COMMON SHARED ${common})
+add_library(REMOTECONFIGLONGPOLLSERVICE SHARED ${RemoteConfigLongPollService})
+
 
 add_executable(test ./tests/ApolloConfigTest.cpp)
-add_dependencies(test APOLLOCONFIG HTTPCLIENT)
-target_link_libraries(test PRIVATE APOLLOCONFIG HTTPCLIENT)
+add_dependencies(test APOLLOCONFIG HTTPCLIENT COMMON REMOTECONFIGLONGPOLLSERVICE)
+target_link_libraries(test PRIVATE APOLLOCONFIG HTTPCLIENT COMMON REMOTECONFIGLONGPOLLSERVICE)
 
 # 第三方库函数的绑定
 target_link_libraries(test PRIVATE CURL::libcurl nlohmann_json::nlohmann_json)

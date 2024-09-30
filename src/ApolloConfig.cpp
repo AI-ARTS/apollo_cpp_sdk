@@ -49,19 +49,19 @@ ApolloConfig::~ApolloConfig() {}
 // 该接口会直接从数据库中获取配置，可以配合配置推送通知实现实时更新配置。
 // URL: {config_server_url}/configs/{appId}/{clusterName}/{namespaceName}?releaseKey={releaseKey}&messages={messages}&label={label}&ip={clientIp}
 void ApolloConfig::fetchConfigJsonCache() {
-    HttpClient client;    
-    std::string response = client.get(urlJsonCache);
+    // HttpClient client;    
+    std::string response = HttpClient::get(urlJsonCache);
     parseConfigJsonCache(response);
 }
 
 void ApolloConfig::fetchConfigStrCache() {
-    HttpClient client;    
-    std::string response = client.get(urlStrCache);
+    // HttpClient client;    
+    std::string response = HttpClient::get(urlStrCache);
     parseConfigStrCache(response);
 }
 void ApolloConfig::fetchConfigDatabases() {
-    HttpClient client;    
-    std::string response = client.get(urlDatabases);
+    // HttpClient client;    
+    std::string response = HttpClient::get(urlDatabases);
     parseConfigDatabases(response);
 }
 

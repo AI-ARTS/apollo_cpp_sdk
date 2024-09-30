@@ -18,3 +18,16 @@ int main(){
     return 0;
 }
 ```
+## 长轮训测试示例
+```cpp
+int main() {
+    RemoteConfigLongPollService longPollService("myAppId", "myCluster", "myDataCenter", "mySecret");
+    longPollService.startLongPolling();
+
+    // Simulate running for a while
+    std::this_thread::sleep_for(std::chrono::seconds(20));
+
+    longPollService.stopLongPolling();
+    return 0;
+}
+```

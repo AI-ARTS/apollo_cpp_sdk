@@ -1,13 +1,10 @@
-#ifndef HTTP_CLIENT_H
-#define HTTP_CLIENT_H
-
+#pragma once
 #include <string>
 
 namespace apollocpp{
 class HttpClient {
 public:
-    std::string get(const std::string& url);
+    static std::string get(const std::string& url);
 };
 
 }
-#endif // HTTP_CLIENT_H

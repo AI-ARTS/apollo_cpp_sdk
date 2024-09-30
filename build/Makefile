@@ -146,6 +146,32 @@ HTTPCLIENT/fast:
 .PHONY : HTTPCLIENT/fast
 
 #=============================================================================
+# Target rules for targets named COMMON
+
+# Build rule for target.
+COMMON: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 COMMON
+.PHONY : COMMON
+
+# fast build rule for target.
+COMMON/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/COMMON.dir/build.make CMakeFiles/COMMON.dir/build
+.PHONY : COMMON/fast
+
+#=============================================================================
+# Target rules for targets named REMOTECONFIGLONGPOLLSERVICE
+
+# Build rule for target.
+REMOTECONFIGLONGPOLLSERVICE: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 REMOTECONFIGLONGPOLLSERVICE
+.PHONY : REMOTECONFIGLONGPOLLSERVICE
+
+# fast build rule for target.
+REMOTECONFIGLONGPOLLSERVICE/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/build.make CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/build
+.PHONY : REMOTECONFIGLONGPOLLSERVICE/fast
+
+#=============================================================================
 # Target rules for targets named test
 
 # Build rule for target.
@@ -206,6 +232,54 @@ src/HttpClient.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HTTPCLIENT.dir/build.make CMakeFiles/HTTPCLIENT.dir/src/HttpClient.cpp.s
 .PHONY : src/HttpClient.cpp.s
 
+src/RemoteConfigLongPollService_.o: src/RemoteConfigLongPollService_.cpp.o
+.PHONY : src/RemoteConfigLongPollService_.o
+
+# target to build an object file
+src/RemoteConfigLongPollService_.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/build.make CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService_.cpp.o
+.PHONY : src/RemoteConfigLongPollService_.cpp.o
+
+src/RemoteConfigLongPollService_.i: src/RemoteConfigLongPollService_.cpp.i
+.PHONY : src/RemoteConfigLongPollService_.i
+
+# target to preprocess a source file
+src/RemoteConfigLongPollService_.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/build.make CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService_.cpp.i
+.PHONY : src/RemoteConfigLongPollService_.cpp.i
+
+src/RemoteConfigLongPollService_.s: src/RemoteConfigLongPollService_.cpp.s
+.PHONY : src/RemoteConfigLongPollService_.s
+
+# target to generate assembly for a file
+src/RemoteConfigLongPollService_.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/build.make CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService_.cpp.s
+.PHONY : src/RemoteConfigLongPollService_.cpp.s
+
+src/common.o: src/common.cpp.o
+.PHONY : src/common.o
+
+# target to build an object file
+src/common.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/COMMON.dir/build.make CMakeFiles/COMMON.dir/src/common.cpp.o
+.PHONY : src/common.cpp.o
+
+src/common.i: src/common.cpp.i
+.PHONY : src/common.i
+
+# target to preprocess a source file
+src/common.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/COMMON.dir/build.make CMakeFiles/COMMON.dir/src/common.cpp.i
+.PHONY : src/common.cpp.i
+
+src/common.s: src/common.cpp.s
+.PHONY : src/common.s
+
+# target to generate assembly for a file
+src/common.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/COMMON.dir/build.make CMakeFiles/COMMON.dir/src/common.cpp.s
+.PHONY : src/common.cpp.s
+
 tests/ApolloConfigTest.o: tests/ApolloConfigTest.cpp.o
 .PHONY : tests/ApolloConfigTest.o
 
@@ -239,7 +313,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... APOLLOCONFIG"
+	@echo "... COMMON"
 	@echo "... HTTPCLIENT"
+	@echo "... REMOTECONFIGLONGPOLLSERVICE"
 	@echo "... test"
 	@echo "... src/ApolloConfig.o"
 	@echo "... src/ApolloConfig.i"
@@ -247,6 +323,12 @@ help:
 	@echo "... src/HttpClient.o"
 	@echo "... src/HttpClient.i"
 	@echo "... src/HttpClient.s"
+	@echo "... src/RemoteConfigLongPollService_.o"
+	@echo "... src/RemoteConfigLongPollService_.i"
+	@echo "... src/RemoteConfigLongPollService_.s"
+	@echo "... src/common.o"
+	@echo "... src/common.i"
+	@echo "... src/common.s"
 	@echo "... tests/ApolloConfigTest.o"
 	@echo "... tests/ApolloConfigTest.i"
 	@echo "... tests/ApolloConfigTest.s"

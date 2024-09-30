@@ -53,5 +53,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/APOLLOCONFIG.dir/DependInfo.cmake"
   "CMakeFiles/HTTPCLIENT.dir/DependInfo.cmake"
+  "CMakeFiles/COMMON.dir/DependInfo.cmake"
+  "CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/DependInfo.cmake"
   "CMakeFiles/test.dir/DependInfo.cmake"
   )

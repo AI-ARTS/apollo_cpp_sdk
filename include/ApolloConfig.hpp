@@ -1,6 +1,4 @@
-#ifndef APOLLO_CONFIG_H
-#define APOLLO_CONFIG_H
-
+#pragma once
 #include <string>
 #include <unordered_map>
 // #include <mutex>
@@ -57,4 +55,3 @@ private:
     void parseConfigDatabases(const std::string& response);
 };
 }
-#endif // APOLLO_CONFIG_H
