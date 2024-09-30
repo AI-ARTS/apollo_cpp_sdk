@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -O0 -g -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function -shared -Wl,-soname,libAPOLLOCONFIG.so -o ../lib/libAPOLLOCONFIG.so CMakeFiles/APOLLOCONFIG.dir/src/ApolloConfig.cpp.o 
