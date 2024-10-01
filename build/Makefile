@@ -120,56 +120,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named APOLLOCONFIG
+# Target rules for targets named Apollocppclient
 
 # Build rule for target.
-APOLLOCONFIG: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 APOLLOCONFIG
-.PHONY : APOLLOCONFIG
+Apollocppclient: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Apollocppclient
+.PHONY : Apollocppclient
 
 # fast build rule for target.
-APOLLOCONFIG/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/APOLLOCONFIG.dir/build.make CMakeFiles/APOLLOCONFIG.dir/build
-.PHONY : APOLLOCONFIG/fast
-
-#=============================================================================
-# Target rules for targets named HTTPCLIENT
-
-# Build rule for target.
-HTTPCLIENT: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 HTTPCLIENT
-.PHONY : HTTPCLIENT
-
-# fast build rule for target.
-HTTPCLIENT/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/HTTPCLIENT.dir/build.make CMakeFiles/HTTPCLIENT.dir/build
-.PHONY : HTTPCLIENT/fast
-
-#=============================================================================
-# Target rules for targets named COMMON
-
-# Build rule for target.
-COMMON: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 COMMON
-.PHONY : COMMON
-
-# fast build rule for target.
-COMMON/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/COMMON.dir/build.make CMakeFiles/COMMON.dir/build
-.PHONY : COMMON/fast
-
-#=============================================================================
-# Target rules for targets named REMOTECONFIGLONGPOLLSERVICE
-
-# Build rule for target.
-REMOTECONFIGLONGPOLLSERVICE: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 REMOTECONFIGLONGPOLLSERVICE
-.PHONY : REMOTECONFIGLONGPOLLSERVICE
-
-# fast build rule for target.
-REMOTECONFIGLONGPOLLSERVICE/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/build.make CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/build
-.PHONY : REMOTECONFIGLONGPOLLSERVICE/fast
+Apollocppclient/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Apollocppclient.dir/build.make CMakeFiles/Apollocppclient.dir/build
+.PHONY : Apollocppclient/fast
 
 #=============================================================================
 # Target rules for targets named test
@@ -189,7 +150,7 @@ src/ApolloConfig.o: src/ApolloConfig.cpp.o
 
 # target to build an object file
 src/ApolloConfig.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/APOLLOCONFIG.dir/build.make CMakeFiles/APOLLOCONFIG.dir/src/ApolloConfig.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Apollocppclient.dir/build.make CMakeFiles/Apollocppclient.dir/src/ApolloConfig.cpp.o
 .PHONY : src/ApolloConfig.cpp.o
 
 src/ApolloConfig.i: src/ApolloConfig.cpp.i
@@ -197,7 +158,7 @@ src/ApolloConfig.i: src/ApolloConfig.cpp.i
 
 # target to preprocess a source file
 src/ApolloConfig.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/APOLLOCONFIG.dir/build.make CMakeFiles/APOLLOCONFIG.dir/src/ApolloConfig.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Apollocppclient.dir/build.make CMakeFiles/Apollocppclient.dir/src/ApolloConfig.cpp.i
 .PHONY : src/ApolloConfig.cpp.i
 
 src/ApolloConfig.s: src/ApolloConfig.cpp.s
@@ -205,7 +166,7 @@ src/ApolloConfig.s: src/ApolloConfig.cpp.s
 
 # target to generate assembly for a file
 src/ApolloConfig.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/APOLLOCONFIG.dir/build.make CMakeFiles/APOLLOCONFIG.dir/src/ApolloConfig.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Apollocppclient.dir/build.make CMakeFiles/Apollocppclient.dir/src/ApolloConfig.cpp.s
 .PHONY : src/ApolloConfig.cpp.s
 
 src/HttpClient.o: src/HttpClient.cpp.o
@@ -213,7 +174,7 @@ src/HttpClient.o: src/HttpClient.cpp.o
 
 # target to build an object file
 src/HttpClient.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/HTTPCLIENT.dir/build.make CMakeFiles/HTTPCLIENT.dir/src/HttpClient.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Apollocppclient.dir/build.make CMakeFiles/Apollocppclient.dir/src/HttpClient.cpp.o
 .PHONY : src/HttpClient.cpp.o
 
 src/HttpClient.i: src/HttpClient.cpp.i
@@ -221,7 +182,7 @@ src/HttpClient.i: src/HttpClient.cpp.i
 
 # target to preprocess a source file
 src/HttpClient.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/HTTPCLIENT.dir/build.make CMakeFiles/HTTPCLIENT.dir/src/HttpClient.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Apollocppclient.dir/build.make CMakeFiles/Apollocppclient.dir/src/HttpClient.cpp.i
 .PHONY : src/HttpClient.cpp.i
 
 src/HttpClient.s: src/HttpClient.cpp.s
@@ -229,39 +190,39 @@ src/HttpClient.s: src/HttpClient.cpp.s
 
 # target to generate assembly for a file
 src/HttpClient.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/HTTPCLIENT.dir/build.make CMakeFiles/HTTPCLIENT.dir/src/HttpClient.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Apollocppclient.dir/build.make CMakeFiles/Apollocppclient.dir/src/HttpClient.cpp.s
 .PHONY : src/HttpClient.cpp.s
 
-src/RemoteConfigLongPollService_.o: src/RemoteConfigLongPollService_.cpp.o
-.PHONY : src/RemoteConfigLongPollService_.o
+src/RemoteConfigLongPollService.o: src/RemoteConfigLongPollService.cpp.o
+.PHONY : src/RemoteConfigLongPollService.o
 
 # target to build an object file
-src/RemoteConfigLongPollService_.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/build.make CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService_.cpp.o
-.PHONY : src/RemoteConfigLongPollService_.cpp.o
+src/RemoteConfigLongPollService.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Apollocppclient.dir/build.make CMakeFiles/Apollocppclient.dir/src/RemoteConfigLongPollService.cpp.o
+.PHONY : src/RemoteConfigLongPollService.cpp.o
 
-src/RemoteConfigLongPollService_.i: src/RemoteConfigLongPollService_.cpp.i
-.PHONY : src/RemoteConfigLongPollService_.i
+src/RemoteConfigLongPollService.i: src/RemoteConfigLongPollService.cpp.i
+.PHONY : src/RemoteConfigLongPollService.i
 
 # target to preprocess a source file
-src/RemoteConfigLongPollService_.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/build.make CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService_.cpp.i
-.PHONY : src/RemoteConfigLongPollService_.cpp.i
+src/RemoteConfigLongPollService.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Apollocppclient.dir/build.make CMakeFiles/Apollocppclient.dir/src/RemoteConfigLongPollService.cpp.i
+.PHONY : src/RemoteConfigLongPollService.cpp.i
 
-src/RemoteConfigLongPollService_.s: src/RemoteConfigLongPollService_.cpp.s
-.PHONY : src/RemoteConfigLongPollService_.s
+src/RemoteConfigLongPollService.s: src/RemoteConfigLongPollService.cpp.s
+.PHONY : src/RemoteConfigLongPollService.s
 
 # target to generate assembly for a file
-src/RemoteConfigLongPollService_.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/build.make CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService_.cpp.s
-.PHONY : src/RemoteConfigLongPollService_.cpp.s
+src/RemoteConfigLongPollService.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Apollocppclient.dir/build.make CMakeFiles/Apollocppclient.dir/src/RemoteConfigLongPollService.cpp.s
+.PHONY : src/RemoteConfigLongPollService.cpp.s
 
 src/common.o: src/common.cpp.o
 .PHONY : src/common.o
 
 # target to build an object file
 src/common.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/COMMON.dir/build.make CMakeFiles/COMMON.dir/src/common.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Apollocppclient.dir/build.make CMakeFiles/Apollocppclient.dir/src/common.cpp.o
 .PHONY : src/common.cpp.o
 
 src/common.i: src/common.cpp.i
@@ -269,7 +230,7 @@ src/common.i: src/common.cpp.i
 
 # target to preprocess a source file
 src/common.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/COMMON.dir/build.make CMakeFiles/COMMON.dir/src/common.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Apollocppclient.dir/build.make CMakeFiles/Apollocppclient.dir/src/common.cpp.i
 .PHONY : src/common.cpp.i
 
 src/common.s: src/common.cpp.s
@@ -277,7 +238,7 @@ src/common.s: src/common.cpp.s
 
 # target to generate assembly for a file
 src/common.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/COMMON.dir/build.make CMakeFiles/COMMON.dir/src/common.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Apollocppclient.dir/build.make CMakeFiles/Apollocppclient.dir/src/common.cpp.s
 .PHONY : src/common.cpp.s
 
 tests/ApolloConfigTest.o: tests/ApolloConfigTest.cpp.o
@@ -312,10 +273,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... APOLLOCONFIG"
-	@echo "... COMMON"
-	@echo "... HTTPCLIENT"
-	@echo "... REMOTECONFIGLONGPOLLSERVICE"
+	@echo "... Apollocppclient"
 	@echo "... test"
 	@echo "... src/ApolloConfig.o"
 	@echo "... src/ApolloConfig.i"
@@ -323,9 +281,9 @@ help:
 	@echo "... src/HttpClient.o"
 	@echo "... src/HttpClient.i"
 	@echo "... src/HttpClient.s"
-	@echo "... src/RemoteConfigLongPollService_.o"
-	@echo "... src/RemoteConfigLongPollService_.i"
-	@echo "... src/RemoteConfigLongPollService_.s"
+	@echo "... src/RemoteConfigLongPollService.o"
+	@echo "... src/RemoteConfigLongPollService.i"
+	@echo "... src/RemoteConfigLongPollService.s"
 	@echo "... src/common.o"
 	@echo "... src/common.i"
 	@echo "... src/common.s"

@@ -86,17 +86,65 @@ CMakeFiles/APOLLOCONFIG.dir/src/ApolloConfig.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/APOLLOCONFIG.dir/src/ApolloConfig.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aldd/JD/apollo_cpp_sdk/src/ApolloConfig.cpp -o CMakeFiles/APOLLOCONFIG.dir/src/ApolloConfig.cpp.s
 
+CMakeFiles/APOLLOCONFIG.dir/src/HttpClient.cpp.o: CMakeFiles/APOLLOCONFIG.dir/flags.make
+CMakeFiles/APOLLOCONFIG.dir/src/HttpClient.cpp.o: ../src/HttpClient.cpp
+CMakeFiles/APOLLOCONFIG.dir/src/HttpClient.cpp.o: CMakeFiles/APOLLOCONFIG.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/aldd/JD/apollo_cpp_sdk/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/APOLLOCONFIG.dir/src/HttpClient.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/APOLLOCONFIG.dir/src/HttpClient.cpp.o -MF CMakeFiles/APOLLOCONFIG.dir/src/HttpClient.cpp.o.d -o CMakeFiles/APOLLOCONFIG.dir/src/HttpClient.cpp.o -c /home/aldd/JD/apollo_cpp_sdk/src/HttpClient.cpp
+
+CMakeFiles/APOLLOCONFIG.dir/src/HttpClient.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/APOLLOCONFIG.dir/src/HttpClient.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aldd/JD/apollo_cpp_sdk/src/HttpClient.cpp > CMakeFiles/APOLLOCONFIG.dir/src/HttpClient.cpp.i
+
+CMakeFiles/APOLLOCONFIG.dir/src/HttpClient.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/APOLLOCONFIG.dir/src/HttpClient.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aldd/JD/apollo_cpp_sdk/src/HttpClient.cpp -o CMakeFiles/APOLLOCONFIG.dir/src/HttpClient.cpp.s
+
+CMakeFiles/APOLLOCONFIG.dir/src/RemoteConfigLongPollService.cpp.o: CMakeFiles/APOLLOCONFIG.dir/flags.make
+CMakeFiles/APOLLOCONFIG.dir/src/RemoteConfigLongPollService.cpp.o: ../src/RemoteConfigLongPollService.cpp
+CMakeFiles/APOLLOCONFIG.dir/src/RemoteConfigLongPollService.cpp.o: CMakeFiles/APOLLOCONFIG.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/aldd/JD/apollo_cpp_sdk/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/APOLLOCONFIG.dir/src/RemoteConfigLongPollService.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/APOLLOCONFIG.dir/src/RemoteConfigLongPollService.cpp.o -MF CMakeFiles/APOLLOCONFIG.dir/src/RemoteConfigLongPollService.cpp.o.d -o CMakeFiles/APOLLOCONFIG.dir/src/RemoteConfigLongPollService.cpp.o -c /home/aldd/JD/apollo_cpp_sdk/src/RemoteConfigLongPollService.cpp
+
+CMakeFiles/APOLLOCONFIG.dir/src/RemoteConfigLongPollService.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/APOLLOCONFIG.dir/src/RemoteConfigLongPollService.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aldd/JD/apollo_cpp_sdk/src/RemoteConfigLongPollService.cpp > CMakeFiles/APOLLOCONFIG.dir/src/RemoteConfigLongPollService.cpp.i
+
+CMakeFiles/APOLLOCONFIG.dir/src/RemoteConfigLongPollService.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/APOLLOCONFIG.dir/src/RemoteConfigLongPollService.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aldd/JD/apollo_cpp_sdk/src/RemoteConfigLongPollService.cpp -o CMakeFiles/APOLLOCONFIG.dir/src/RemoteConfigLongPollService.cpp.s
+
+CMakeFiles/APOLLOCONFIG.dir/src/common.cpp.o: CMakeFiles/APOLLOCONFIG.dir/flags.make
+CMakeFiles/APOLLOCONFIG.dir/src/common.cpp.o: ../src/common.cpp
+CMakeFiles/APOLLOCONFIG.dir/src/common.cpp.o: CMakeFiles/APOLLOCONFIG.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/aldd/JD/apollo_cpp_sdk/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/APOLLOCONFIG.dir/src/common.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/APOLLOCONFIG.dir/src/common.cpp.o -MF CMakeFiles/APOLLOCONFIG.dir/src/common.cpp.o.d -o CMakeFiles/APOLLOCONFIG.dir/src/common.cpp.o -c /home/aldd/JD/apollo_cpp_sdk/src/common.cpp
+
+CMakeFiles/APOLLOCONFIG.dir/src/common.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/APOLLOCONFIG.dir/src/common.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aldd/JD/apollo_cpp_sdk/src/common.cpp > CMakeFiles/APOLLOCONFIG.dir/src/common.cpp.i
+
+CMakeFiles/APOLLOCONFIG.dir/src/common.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/APOLLOCONFIG.dir/src/common.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aldd/JD/apollo_cpp_sdk/src/common.cpp -o CMakeFiles/APOLLOCONFIG.dir/src/common.cpp.s
+
 # Object files for target APOLLOCONFIG
 APOLLOCONFIG_OBJECTS = \
-"CMakeFiles/APOLLOCONFIG.dir/src/ApolloConfig.cpp.o"
+"CMakeFiles/APOLLOCONFIG.dir/src/ApolloConfig.cpp.o" \
+"CMakeFiles/APOLLOCONFIG.dir/src/HttpClient.cpp.o" \
+"CMakeFiles/APOLLOCONFIG.dir/src/RemoteConfigLongPollService.cpp.o" \
+"CMakeFiles/APOLLOCONFIG.dir/src/common.cpp.o"
 
 # External object files for target APOLLOCONFIG
 APOLLOCONFIG_EXTERNAL_OBJECTS =
 
 ../lib/libAPOLLOCONFIG.so: CMakeFiles/APOLLOCONFIG.dir/src/ApolloConfig.cpp.o
+../lib/libAPOLLOCONFIG.so: CMakeFiles/APOLLOCONFIG.dir/src/HttpClient.cpp.o
+../lib/libAPOLLOCONFIG.so: CMakeFiles/APOLLOCONFIG.dir/src/RemoteConfigLongPollService.cpp.o
+../lib/libAPOLLOCONFIG.so: CMakeFiles/APOLLOCONFIG.dir/src/common.cpp.o
 ../lib/libAPOLLOCONFIG.so: CMakeFiles/APOLLOCONFIG.dir/build.make
 ../lib/libAPOLLOCONFIG.so: CMakeFiles/APOLLOCONFIG.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/aldd/JD/apollo_cpp_sdk/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library ../lib/libAPOLLOCONFIG.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/aldd/JD/apollo_cpp_sdk/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX shared library ../lib/libAPOLLOCONFIG.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/APOLLOCONFIG.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

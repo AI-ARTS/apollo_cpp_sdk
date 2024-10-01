@@ -72,28 +72,28 @@ include CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/flags.make
 
-CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService_.cpp.o: CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/flags.make
-CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService_.cpp.o: ../src/RemoteConfigLongPollService\ .cpp
-CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService_.cpp.o: CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/aldd/JD/apollo_cpp_sdk/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService_.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService_.cpp.o -MF CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService_.cpp.o.d -o CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService_.cpp.o -c "/home/aldd/JD/apollo_cpp_sdk/src/RemoteConfigLongPollService .cpp"
+CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService.cpp.o: CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/flags.make
+CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService.cpp.o: ../src/RemoteConfigLongPollService.cpp
+CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService.cpp.o: CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/aldd/JD/apollo_cpp_sdk/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService.cpp.o -MF CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService.cpp.o.d -o CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService.cpp.o -c /home/aldd/JD/apollo_cpp_sdk/src/RemoteConfigLongPollService.cpp
 
-CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService_.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService_.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/aldd/JD/apollo_cpp_sdk/src/RemoteConfigLongPollService .cpp" > CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService_.cpp.i
+CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aldd/JD/apollo_cpp_sdk/src/RemoteConfigLongPollService.cpp > CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService.cpp.i
 
-CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService_.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService_.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/aldd/JD/apollo_cpp_sdk/src/RemoteConfigLongPollService .cpp" -o CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService_.cpp.s
+CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aldd/JD/apollo_cpp_sdk/src/RemoteConfigLongPollService.cpp -o CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService.cpp.s
 
 # Object files for target REMOTECONFIGLONGPOLLSERVICE
 REMOTECONFIGLONGPOLLSERVICE_OBJECTS = \
-"CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService_.cpp.o"
+"CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService.cpp.o"
 
 # External object files for target REMOTECONFIGLONGPOLLSERVICE
 REMOTECONFIGLONGPOLLSERVICE_EXTERNAL_OBJECTS =
 
-../lib/libREMOTECONFIGLONGPOLLSERVICE.so: CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService_.cpp.o
+../lib/libREMOTECONFIGLONGPOLLSERVICE.so: CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService.cpp.o
 ../lib/libREMOTECONFIGLONGPOLLSERVICE.so: CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/build.make
 ../lib/libREMOTECONFIGLONGPOLLSERVICE.so: CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/aldd/JD/apollo_cpp_sdk/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library ../lib/libREMOTECONFIGLONGPOLLSERVICE.so"
