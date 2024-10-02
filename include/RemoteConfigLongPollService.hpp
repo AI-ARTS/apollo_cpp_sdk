@@ -83,8 +83,9 @@ public:
     void deleteNotifications(const std::string& namespaceName);
 
     // 改命名空间的值
-    void modifyNotifitionId(const std::string& namespaceName, const std::string& NotifitionId);
-    void modifyNotifitionId(const std::string& namespaceName, int NotifitionId);
+    void modifyNotifitionId(const std::string& namespaceName, const std::string& NotifitionIdStr);
+    void modifyNotifitionId(const std::string& namespaceName, int NotifitionIdINT);
+    void modifyNotifitionId(const std::string& namespaceName, const std::string& NotifitionIdStr ,int NotifitionId);
 
     // 控制配置数据size
     void setApolloconfigSzie(size_t size){apolloconfigSize = (size>APOLLOCONFIGCACHESIZE?APOLLOCONFIGCACHESIZE:size);}
