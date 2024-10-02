@@ -1,4 +1,4 @@
-# Apollo-client-C++
+# Apollo-SDK-cpp client for Apollo
 Apollo配置中心C++客户端
 ## 架构以及功能介绍
 此为apollo客户端，当前功能包括获取拉取apollo配置功能所拥有的接口介绍如下：
