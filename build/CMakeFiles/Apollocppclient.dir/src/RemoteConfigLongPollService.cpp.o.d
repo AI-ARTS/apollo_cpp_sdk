@@ -324,4 +324,8 @@ CMakeFiles/Apollocppclient.dir/src/RemoteConfigLongPollService.cpp.o: \
  /usr/include/x86_64-linux-gnu/curl/options.h \
  /home/aldd/JD/apollo_cpp_sdk/include/ApolloConfig.hpp \
  /home/aldd/JD/apollo_cpp_sdk/include/HttpClient.hpp \
+ /usr/include/c++/11/fstream \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+ /usr/include/c++/11/bits/fstream.tcc \
  /home/aldd/JD/apollo_cpp_sdk/include/common.hpp

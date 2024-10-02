@@ -1,10 +1,47 @@
 
 #include"RemoteConfigLongPollService.hpp"
 #include<iostream>
+#include<fstream>
 #include "common.hpp"
 #include "ApolloConfig.hpp"
 
 namespace apollocpp{
+
+RemoteConfigLongPollService::RemoteConfigLongPollService(const std::string& configJsonFile){
+    // 使用json读取文件
+    this->configJsonFile = configJsonFile;
+    this->refreshConnectApolloConfig();
+}
+
+void RemoteConfigLongPollService::refreshConnectApolloConfig(){
+    // 重置polling配置
+    nlohmann::json j;
+    std::ifstream input(configJsonFile);
+    if (!input.is_open() || input.peek() == std::ifstream::traits_type::eof()) {
+        std::cerr << "Failed to open config file or file is empty." << std::endl;
+        return; // 或者采取其他适当的处理
+    }
+    input>>j;
+    std::string namesapceName;
+    try
+    {
+        appId = j.at("appId");
+        host = j.at("host");
+        cluster = j.at("cluster");
+        if (j.contains("namesapceName")){
+            namesapceName = j.at("namesapceName");
+            addNotifications(namesapceName);
+        }else{
+            namesapceName = "";
+        }
+        longPollingTimeout = static_cast<long>(j.at("longPollingTimeout"))<60L?(60L):static_cast<long>(j.at("longPollingTimeout"));        
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+}
+
 void RemoteConfigLongPollService::httpGet(const std::string& url) {
  CURL* curl = curl_easy_init();
     std::string readBuffer;
@@ -21,24 +58,30 @@ void RemoteConfigLongPollService::httpGet(const std::string& url) {
         while (!longPollingStopped) {
             readBuffer.clear();  // 清空读取缓冲区
             curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-            curl_easy_setopt(curl, CURLOPT_TIMEOUT, 60L);  // 超时设置
+            curl_easy_setopt(curl, CURLOPT_TIMEOUT, longPollingTimeout);  // 超时设置
             CURLcode res = curl_easy_perform(curl);
             if (res != CURLE_OK) {
                 if (res == CURLE_COULDNT_CONNECT) {
                     std::cerr << "Could not connect to server." << std::endl;
-                    continue;
+                    // continue;
                 } else if (res == CURLE_HTTP_RETURNED_ERROR) {
                     std::cerr << "HTTP error occurred." << std::endl;
                     // 这里可根据状态码进行操作
                     break;
                 } else if (res == CURLE_OPERATION_TIMEDOUT) {
                     std::cerr << "Operation timed out. " << "long poll continue." <<std::endl;
-                    std::cout<<url <<std::endl;
-                    continue;
+                    {
+                    // 读锁
+                        std::shared_lock<std::shared_mutex> lock(notificationsMutex);
+                        if (notificationsUpdateflag){
+                            // url需要更新
+                            break;
+                        }
+                    }
+                    // continue;
                 } else {
                     std::cerr << "Curl error: " << curl_easy_strerror(res) << std::endl;
                 }
-                std::this_thread::sleep_for(std::chrono::seconds(5));  // 等待后重试
             }
             // 处理数据
             processResponse(readBuffer);
@@ -80,7 +123,7 @@ void RemoteConfigLongPollService::doLongPollingRefresh(){
 std::string RemoteConfigLongPollService::assembleLongPollRefreshUrl(){
     nlohmann::json j = notifications;
     std::string jData = j.dump();
-    std::cout<<"jData: "<<jData<<std::endl;
+    std::cout<<"[info] url parameter: "<<jData<<std::endl;
     std::string encoded_notifications = apollocpp::url_encode(jData);
     std::string url = "http://"+host+"/notifications/v2?appId=" + appId + "&cluster=" + cluster+"&notifications="+encoded_notifications;
     return url;
@@ -99,7 +142,6 @@ std::string RemoteConfigLongPollService::assembleLongPollRefreshUrl(){
             std::string reNamespaceName = notification["namespaceName"];
             int reNotificationId =  notification["notificationId"];
             // 拿到通知的结果
-            std::cout<<"reNamespaceName: "<<reNamespaceName<<" reNotificationId: "<<reNotificationId<<std::endl;
             // 现在就是要通知某个namespace的值更新了
             int tempNotifitionId;
             {
@@ -109,13 +151,15 @@ std::string RemoteConfigLongPollService::assembleLongPollRefreshUrl(){
             if (tempNotifitionId != reNotificationId){
                 // 配置进行更新，进行配置的通知：所监听的命名空间的版本进行更新了，进行通知
                 modifyNotifitionId(reNamespaceName,reNotificationId);
-                notifyClients();
+                notifyClients(reNamespaceName);
             }
         }
     }
 
-    void RemoteConfigLongPollService::notifyClients() {
+    void RemoteConfigLongPollService::notifyClients(const std::string& reNamespaceName) {
         std::cout << "Notifying clients of configuration changes..." << std::endl;
+        std::cout<<"[info] need update namespaceName: "<<reNamespaceName<<std::endl;
+        // 这里就是需要将配置信息落盘还是什么
     }
 
     void RemoteConfigLongPollService::startLongPolling() {
@@ -131,16 +175,13 @@ std::string RemoteConfigLongPollService::assembleLongPollRefreshUrl(){
         longPollingStopped = true;
     }
 
-    void RemoteConfigLongPollService::addNotifications(const std::string& namespaceName,const std::string& notificationId){
-        if (notificationId!="-1"){
-            std::cout<<"notificationId not -1:"<<notificationId<<std::endl;
-            return;
-        }
+    void RemoteConfigLongPollService::addNotifications(const std::string& namespaceName){
+        const std::string notificationId = "-1";
         std::unordered_map<std::string, std::string> maps{{"namespaceName",namespaceName}, {"notificationId",notificationId}};
         std::lock_guard<std::shared_mutex> lock(notificationsMutex);
         try
         {
-            std::cout<<namespaceName<<" "<<notificationId<<std::endl;
+            std::cout<<"[info] add namespace: "<<namespaceName<<std::endl;
             namespaceToNotificationsId[namespaceName] = std::stoi(notificationId);
         }
         catch(const std::exception& e)
@@ -155,8 +196,8 @@ std::string RemoteConfigLongPollService::assembleLongPollRefreshUrl(){
     void RemoteConfigLongPollService::addNotifications(const std::unordered_map<std::string, std::string> &maps)
     {
         // 增加一个maps。
-        std::lock_guard<std::shared_mutex> lock(notificationsMutex);
         std::unordered_map<std::string, int> temp;
+        std::lock_guard<std::shared_mutex> lock(notificationsMutex);
         try
         {
             for (const auto& [key, val]:maps){
@@ -176,6 +217,15 @@ std::string RemoteConfigLongPollService::assembleLongPollRefreshUrl(){
             notificationsUpdateflag = true; // 更新
         }
     }
+void RemoteConfigLongPollService::addNotifications(const std::vector<std::string>& vec){
+    // 多命名空间增加
+    std::lock_guard<std::shared_mutex> lock(notificationsMutex);
+    for (auto&it:vec){
+        namespaceToNotificationsId[it] = -1;
+        notifications.push_back({{it,"-1"}});
+    }
+}
+
 
 void RemoteConfigLongPollService::deleteNotifications(const std::string &namespaceName){
     std::lock_guard<std::shared_mutex> lock(notificationsMutex);

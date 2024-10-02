@@ -16,15 +16,10 @@
 #include "HttpClient.hpp"
 #define APOLLOCONFIGCACHESIZE 2000 // 保存的是2000个
 
-namespace apollocpp {
+// 此为单应用单集群多命名空间配置感知
+// 后序在这个基础上开发多apollo多应用多集群，多命名空间配置感知系统
 
-class apolloNode{
-public:
-    int namespaceName; // 命名空间
-    ApolloConfig apolloc; // 所保存的数据
-    apolloNode* pre;
-    apolloNode* next;
-};
+namespace apollocpp {
 
 
 class RemoteConfigLongPollService {
@@ -38,12 +33,13 @@ private:
     std::string appId;
     std::string cluster;
     std::string host;
-    int longPollingTimeout;
-    std::unordered_map<std::string, ApolloConfig> apolloconfig;
-    size_t apolloconfigSize;
+    long longPollingTimeout;
+    std::unordered_map<std::string, ApolloConfig> apolloconfig; // 保存配置结果
+    size_t apolloconfigSize; //配置结果的大小控制防止内存爆掉 // 初步想法是lru
     bool notificationsUpdateflag = false;
+
+    std::string configJsonFile;
     // Simulated function to perform HTTP GET request
-    // 长连接请求
     void httpGet(const std::string& url);
 
     // Callback function for libcurl to write response data
@@ -53,18 +49,15 @@ private:
 
     std::string assembleLongPollRefreshUrl();
     void processResponse(const std::string& response);
-
-    void notifyClients();
-
 public:
-    RemoteConfigLongPollService(const std::string& host, const std::string& appId, const std::string& cluster, const std::string& namesapceName="")
+    RemoteConfigLongPollService(const std::string& host, const std::string& appId, const std::string& cluster, const std::string& namesapceName="", long longPollingTimeout=60L)
         : longPollStarted(false), longPollingStopped(false), appId(appId), cluster(cluster), host(host) {
-        longPollingTimeout = 90000; // 90 seconds
         if (!namesapceName.empty()){
             addNotifications(namesapceName); // 增加命名空间
         }
     }
-
+    
+    RemoteConfigLongPollService(const std::string& configJsonFile);
     ~RemoteConfigLongPollService() {
         stopLongPolling();
         if (longPollingThread.joinable()) {
@@ -76,8 +69,9 @@ public:
     void startLongPolling();
     void stopLongPolling();
     // 增加命名空间
-    void addNotifications(const std::string& namespaceName,const std::string& notificationId="-1");
-    void addNotifications(const std::unordered_map<std::string, std::string>& maps);
+    void addNotifications(const std::string& namespaceName);
+    void addNotifications(const std::vector<std::string>& vec);
+    void addNotifications(const std::unordered_map<std::string, std::string> &maps);
 
     // 删除某个命名空间
     void deleteNotifications(const std::string& namespaceName);
@@ -90,6 +84,10 @@ public:
     // 控制配置数据size
     void setApolloconfigSzie(size_t size){apolloconfigSize = (size>APOLLOCONFIGCACHESIZE?APOLLOCONFIGCACHESIZE:size);}
     size_t getApolloconfigSzie()const{return apolloconfigSize;}
+    
+    // 刷新配置
+    void refreshConnectApolloConfig();
+    void notifyClients(const std::string& reNamespaceName);
 };
 }  // namespace apollocpp
 
