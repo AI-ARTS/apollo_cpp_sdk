@@ -24,12 +24,24 @@
 
 namespace apollocpp {
 
-// struct Node{
-//     std::string namespaceName;
-//     std::shared_ptr<ApolloConfig> data;
-//     Node* pre;
-//     Node
-// };
+struct Node{
+    std::string namespaceName;
+    std::shared_ptr<ApolloConfig> data;
+    Node* pre;
+    Node* next;
+    Node(const std::string& key){
+        namespaceName = key;
+        data = nullptr;
+        pre = nullptr;
+        next = nullptr;
+    }
+    Node(){
+        data = nullptr;
+        pre = nullptr;
+        next = nullptr;
+    }
+};
+
 
 class RemoteConfigLongPollService {
 public:
@@ -46,7 +58,9 @@ private:
     std::string cluster;
     std::string host;
     long longPollingTimeout;
-    std::unordered_map<std::string, std::shared_ptr<ApolloConfig>> apolloconfig; // 保存配置结果
+    std::unordered_map<std::string, Node*> apolloconfig; // 保存配置结果
+    Node* dummy = nullptr;
+    Node* tail = nullptr;
     size_t apolloconfigSize; //配置结果的大小控制防止内存爆掉 // 初步想法是lru
     bool notificationsUpdateflag = false;
     std::string configJsonFile;
@@ -78,6 +92,14 @@ public:
         if (longPollingThread.joinable()) {
             longPollingThread.join();
         }
+        // 回收空间
+        Node* temp = dummy;
+        while (temp)
+        {
+            Node* tpnext = temp->next;
+            delete temp;
+            temp = tpnext;
+        }
         // std::cout<<"[info] "<<std::endl;
         log.info("long poll service stoped.");
     }
@@ -106,6 +128,9 @@ public:
     void notifyClients(const std::string& reNamespaceName);
 
     void flushdisk(const std::shared_ptr<ApolloConfig>& apolloc, const std::string namespaceName);
+
+    void moveNodeHead(Node* node);
+    void insertNodeHead(Node* node);
 };
 }  // namespace apollocpp
 

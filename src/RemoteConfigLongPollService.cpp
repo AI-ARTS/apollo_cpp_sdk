@@ -12,6 +12,8 @@ RemoteConfigLongPollService::RemoteConfigLongPollService(const std::string& conf
     // 使用json读取文件
     this->configJsonFile = configJsonFile;
     this->refreshConnectApolloConfig();
+    dummy = new Node;tail = new Node;
+    dummy->next = tail; tail->pre = dummy;
 }
 
 void RemoteConfigLongPollService::refreshConnectApolloConfig(){
@@ -184,13 +186,26 @@ std::string RemoteConfigLongPollService::assembleLongPollRefreshUrl(){
         if (apolloconfig.count(reNamespaceName)){
             lock.unlock(); // 加锁的意义，防止频繁的发布导致数据的混乱
             auto apolloconfigPtr = apolloconfig[reNamespaceName];
-            apolloconfigPtr->fetchConfigJsonCache();
+            apolloconfigPtr->data->fetchConfigJsonCache();
+            // 存在， 访问了，那么就移动到头部
+            moveNodeHead(apolloconfig[reNamespaceName]);
         }else{
-            apolloconfig[reNamespaceName] = std::make_shared<ApolloConfig>(host, appId, cluster, reNamespaceName);
-            apolloconfig[reNamespaceName]->fetchConfigJsonCache();
+            // 不存在
+            if (apolloconfig.size()>=apolloconfigSize){
+                Node* deleteNode = tail->pre;
+                deleteNode->pre->next = deleteNode->next;
+                deleteNode->next->pre = deleteNode->pre;
+                apolloconfig.erase(deleteNode->namespaceName);
+                delete deleteNode; // 删除此Node
+            }
+            Node* newNode = new Node(reNamespaceName);
+            apolloconfig[reNamespaceName] = newNode;
+            newNode->data = std::make_shared<ApolloConfig>(host, appId, cluster, reNamespaceName);
+            insertNodeHead(newNode);
+            newNode->data->fetchConfigJsonCache(); // 更新结果
         }
-        log.info(reNamespaceName+" update: "+ apolloconfig[reNamespaceName]->getDataString());
-        flushdisk(apolloconfig[reNamespaceName],reNamespaceName);
+        log.info(reNamespaceName+" update: "+ apolloconfig[reNamespaceName]->data->getDataString());
+        flushdisk(apolloconfig[reNamespaceName]->data,reNamespaceName);
     }
 
     void RemoteConfigLongPollService::flushdisk(const std::shared_ptr<ApolloConfig> &apolloc, const std::string namespaceName)
@@ -207,6 +222,25 @@ std::string RemoteConfigLongPollService::assembleLongPollRefreshUrl(){
         }else{
             log.error("open file faild:"+place);
         }
+    }
+
+    void RemoteConfigLongPollService::moveNodeHead(Node *node)
+    {
+        node->pre->next = node->next;
+        node->next->pre = node->pre;
+        
+        node->next = dummy->next;
+        node->pre = dummy;
+        dummy->next = node;
+        node->next->pre = node;
+    }
+
+    void RemoteConfigLongPollService::insertNodeHead(Node *node)
+    {
+        node->next = dummy->next;
+        node->pre = dummy;
+        dummy->next = node;
+        node->next->pre = node;
     }
 
     void RemoteConfigLongPollService::startLongPolling() {

@@ -9,6 +9,10 @@ Apollo配置中心C++客户端
 ## 客户端容灾
 如果请求出现错误，暂停1秒，然后将获得url然后再进行长轮训重试，
 
+## 热数据
+lru算法热数据，用于实时向集群进行报告
+冷数据落盘，保证配置数据的安全。
+
 ## 结果示例
 ```json
 [{"namespaceName":"application","notificationId":29,"messages":{"details":{"aldd+arvintzhang+application":29,"aldd+default+application":2}}}]
