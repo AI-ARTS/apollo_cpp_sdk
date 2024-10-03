@@ -1,7 +1,0 @@
-{
-    "host" :"localhost:8080",
-    "appId" :"aldd",
-    "cluster" :"arvintzhang", 
-    "longPollingTimeout" :90,
-    "namesapceName":"RJDLOG"
-}

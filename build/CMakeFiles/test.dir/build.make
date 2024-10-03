@@ -95,8 +95,8 @@ test_EXTERNAL_OBJECTS =
 
 ../bin/test: CMakeFiles/test.dir/tests/ApolloConfigTest.cpp.o
 ../bin/test: CMakeFiles/test.dir/build.make
-../bin/test: /usr/lib/x86_64-linux-gnu/libcurl.so
 ../bin/test: ../lib/libApollocppclient.so
+../bin/test: /usr/local/lib/liblog4cpp.so
 ../bin/test: CMakeFiles/test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/aldd/JD/apollo_cpp_sdk/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../bin/test"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test.dir/link.txt --verbose=$(VERBOSE)

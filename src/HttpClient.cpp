@@ -1,6 +1,7 @@
 #include "HttpClient.hpp"
 #include <curl/curl.h>
 #include<iostream>
+#include <unistd.h>
 namespace apollocpp{
 
 size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
@@ -14,20 +15,26 @@ std::string HttpClient::get(const std::string& url) {
     std::string readBuffer;
 
     curl = curl_easy_init();
-    if (curl) {
-        curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-        res = curl_easy_perform(curl);
-
-        // 检查 res 是否成功
-        if (res != CURLE_OK) {
-            std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
-            readBuffer.clear();  // 清空读取缓冲区
+    int temp = 0;
+    while (true){
+        if (curl) {
+            curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+            curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+            curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+            res = curl_easy_perform(curl);
+            temp++;
+            // 检查 res 是否成功
+            if (res != CURLE_OK) {
+                std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
+                readBuffer.clear();  // 清空读取缓冲区
+                if (temp!=5){
+                    sleep(1);
+                }
+            }
         }
-
-        curl_easy_cleanup(curl);
+        break;
     }
+    curl_easy_cleanup(curl);
     return readBuffer;
 }
 

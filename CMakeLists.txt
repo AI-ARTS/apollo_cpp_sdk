@@ -13,11 +13,14 @@ file(GLOB ApolloConfig "${PROJECT_SOURCE_DIR}/src/*.cpp")
 
 find_package(nlohmann_json 3.2.0 REQUIRED)
 find_package(CURL REQUIRED)
+find_library(LOG4CPP_LIB log4cpp) # 将其打包进去
+find_package(Threads REQUIRED)
+
 
 # 由于这个第三方库需要外部的库，所以将外部的工具库链接到这里即可
 add_library(Apollocppclient SHARED ${ApolloConfig})
-target_link_libraries(Apollocppclient PRIVATE ${CURL_LIBRARIES})  # 添加这行
+target_link_libraries(Apollocppclient PRIVATE ${CURL_LIBRARIES} ${LOG4CPP_LIB} ${CURL_LIBRARIES} nlohmann_json::nlohmann_json Threads::Threads)  # 添加这行
 
 add_executable(test ./tests/ApolloConfigTest.cpp)
 add_dependencies(test Apollocppclient)
-target_link_libraries(test PRIVATE ${CURL_LIBRARIES} nlohmann_json::nlohmann_json Apollocppclient)
+target_link_libraries(test PRIVATE Apollocppclient  ${LOG4CPP_LIB})

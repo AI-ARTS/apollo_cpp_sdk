@@ -15,7 +15,7 @@
 ########################
 
 //Dependencies for the target
-Apollocppclient_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libcurl.so;
+Apollocppclient_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libcurl.so;general;/usr/local/lib/liblog4cpp.so;general;/usr/lib/x86_64-linux-gnu/libcurl.so;
 
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
@@ -224,6 +224,9 @@ CURL_LIBRARY_DEBUG:FILEPATH=CURL_LIBRARY_DEBUG-NOTFOUND
 //Path to a library.
 CURL_LIBRARY_RELEASE:FILEPATH=/usr/lib/x86_64-linux-gnu/libcurl.so
 
+//Path to a library.
+LOG4CPP_LIB:FILEPATH=/usr/local/lib/liblog4cpp.so
+
 //Arguments to supply to pkg-config
 PKG_CONFIG_ARGN:STRING=
 
@@ -328,6 +331,10 @@ CMAKE_GENERATOR_INSTANCE:INTERNAL=
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
+//Test CMAKE_HAVE_LIBC_PTHREAD
+CMAKE_HAVE_LIBC_PTHREAD:INTERNAL=1
+//Have include pthread.h
+CMAKE_HAVE_PTHREAD_H:INTERNAL=1
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=/home/aldd/JD/apollo_cpp_sdk
@@ -403,6 +410,8 @@ CURL_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
 CURL_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 //Details about finding CURL
 FIND_PACKAGE_MESSAGE_DETAILS_CURL:INTERNAL=[/usr/lib/x86_64-linux-gnu/libcurl.so][/usr/include/x86_64-linux-gnu][c ][v7.81.0()]
+//Details about finding Threads
+FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //Details about finding nlohmann_json
 FIND_PACKAGE_MESSAGE_DETAILS_nlohmann_json:INTERNAL=[/usr/local/share/cmake/nlohmann_json/nlohmann_jsonConfig.cmake][v3.11.3(3.2.0)]
 PC_CURL_CFLAGS:INTERNAL=-I/usr/include/x86_64-linux-gnu

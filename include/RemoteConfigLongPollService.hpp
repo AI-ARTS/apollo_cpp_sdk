@@ -8,12 +8,15 @@
 #include <vector>
 #include <string>
 #include <mutex>
+#include <memory>
 #include <shared_mutex>
 #include <random>
 #include <nlohmann/json.hpp>
 #include <curl/curl.h>
 #include "ApolloConfig.hpp"
 #include "HttpClient.hpp"
+#include <condition_variable>
+#include <log4cpp/Category.hh>
 #define APOLLOCONFIGCACHESIZE 2000 // 保存的是2000个
 
 // 此为单应用单集群多命名空间配置感知
@@ -21,8 +24,16 @@
 
 namespace apollocpp {
 
+// struct Node{
+//     std::string namespaceName;
+//     std::shared_ptr<ApolloConfig> data;
+//     Node* pre;
+//     Node
+// };
 
 class RemoteConfigLongPollService {
+public:
+    log4cpp::Category& log = log4cpp::Category::getRoot(); 
 private:
     std::atomic<bool> longPollStarted;
     std::atomic<bool> longPollingStopped;
@@ -30,15 +41,19 @@ private:
     std::unordered_map<std::string, int>  namespaceToNotificationsId;
     std::vector<std::unordered_map<std::string, std::string>> notifications;
     std::shared_mutex notificationsMutex;
+    std::shared_mutex apolloconfigMutex;
     std::string appId;
     std::string cluster;
     std::string host;
     long longPollingTimeout;
-    std::unordered_map<std::string, ApolloConfig> apolloconfig; // 保存配置结果
+    std::unordered_map<std::string, std::shared_ptr<ApolloConfig>> apolloconfig; // 保存配置结果
     size_t apolloconfigSize; //配置结果的大小控制防止内存爆掉 // 初步想法是lru
     bool notificationsUpdateflag = false;
-
     std::string configJsonFile;
+    std::string configconfigdir="./"; // 默认位置
+    
+    std::condition_variable urlupdatecond;
+    
     // Simulated function to perform HTTP GET request
     void httpGet(const std::string& url);
 
@@ -63,7 +78,8 @@ public:
         if (longPollingThread.joinable()) {
             longPollingThread.join();
         }
-        std::cout<<"[info] long poll service stoped."<<std::endl;
+        // std::cout<<"[info] "<<std::endl;
+        log.info("long poll service stoped.");
     }
 
     void startLongPolling();
@@ -88,6 +104,8 @@ public:
     // 刷新配置
     void refreshConnectApolloConfig();
     void notifyClients(const std::string& reNamespaceName);
+
+    void flushdisk(const std::shared_ptr<ApolloConfig>& apolloc, const std::string namespaceName);
 };
 }  // namespace apollocpp
 

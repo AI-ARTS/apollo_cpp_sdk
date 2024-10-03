@@ -72,6 +72,8 @@ std::string ApolloConfig::getValue(const std::string& key) {
 
 void ApolloConfig::parseConfigJsonCache(const std::string& response) {
     nlohmann::json j2;
+    std::lock_guard<std::shared_mutex> lock(dataMutex);
+    cleanCache();
     try
     {
         j2 = nlohmann::json::parse(response.c_str());
@@ -84,23 +86,26 @@ void ApolloConfig::parseConfigJsonCache(const std::string& response) {
         std::cerr << "parse error " << ex.what() << std::endl;
         return ;
     }
+    configDataStr = j2.dump();
 }
 
 void ApolloConfig::parseConfigStrCache(const std::string& response) {
     std::stringstream ss(response);
     std::string s;
+    std::lock_guard<std::shared_mutex> lock(dataMutex);
+    cleanCache();
     while (std::getline(ss, s))
     {
         int pos  = s.find('=');
         configData[s.substr(0,pos)] = s.substr(pos+1, s.size()-pos-1);
     }
-    for (auto&[key, val]:configData){
-        std::cout<<key<< " "<<val<<std::endl;
-    }
+    configDataStr = response;
 }
 
 void ApolloConfig::parseConfigDatabases(const std::string& response) {
     nlohmann::json j2;
+    std::lock_guard<std::shared_mutex> lock(dataMutex);
+    cleanCache();
     try
     {
         j2 = nlohmann::json::parse(response.c_str());
@@ -114,6 +119,28 @@ void ApolloConfig::parseConfigDatabases(const std::string& response) {
         std::cerr << "parse error " << ex.what() << std::endl;
         return ;
     }
+    configDataStr = j2.dump();
+}
+
+void ApolloConfig::cleanCache()
+{
+    configData.clear();
+}
+
+void ApolloConfig::viewDataJson()
+{
+    nlohmann::json j2;
+    {
+        std::shared_lock<std::shared_mutex> lock(dataMutex);
+        j2 = configData;
+    }
+    std::cout<<j2<<std::endl;
+}
+
+std::string ApolloConfig::getDataString()
+{
+    std::shared_lock<std::shared_mutex> lock(dataMutex);
+    return configDataStr;
 }
 
 std::unordered_map<std::string, std::string> ApolloConfig::getConfigData() const{

@@ -6,8 +6,11 @@ Apollo配置中心C++客户端
 `void fetchConfigStrCache();` ：返回 string类型的配置数据
 `void fetchConfigDatabases();`：通过不带缓存的Http接口从Apollo读取配置，该接口会直接从数据库中获取配置，可以配合配置推送通知实现实时更新配置。
 应用实时感知配置更新，使用长轮训进行配置的感应，首次进行访问，会将namespaceName进行注册，在长轮训返回结果等待的情况下，如果apollo有命名空间的配置更新了，那么会将信息返回。
-结果示例
-```txt
+## 客户端容灾
+如果请求出现错误，暂停1秒，然后将获得url然后再进行长轮训重试，
+
+## 结果示例
+```json
 [{"namespaceName":"application","notificationId":29,"messages":{"details":{"aldd+arvintzhang+application":29,"aldd+default+application":2}}}]
 ```
 从其中解析出notificationId进行本地的notificationId的配置更新推送等操作。
@@ -108,3 +111,5 @@ int main(){
 ```cpp
 void RemoteConfigLongPollService::notifyClients(const std::string& reNamespaceName);
 ```
+
+## 依赖使用log4cpp

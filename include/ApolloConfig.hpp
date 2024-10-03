@@ -1,7 +1,8 @@
 #pragma once
 #include <string>
 #include <unordered_map>
-// #include <mutex>
+#include <memory>
+#include <shared_mutex>
 
 /*
 * 接口文档参考官方
@@ -24,6 +25,9 @@ struct EvnData
 };
 
 class ApolloConfig {
+private:
+std::shared_mutex dataMutex;
+
 public:
     ApolloConfig(const std::string& host,const std::string& appId, const std::string& cluster, const std::string& namespaceName);
     ApolloConfig(const EvnData& evn);
@@ -35,7 +39,8 @@ public:
     // 这里实时的更新，加下锁
     std::unordered_map<std::string, std::string> getConfigData()const;
     std::string getValue(const std::string& key);
-    
+    void viewDataJson();
+    std::string getDataString();
 private:
     std::string host;
     std::string appId;
@@ -50,8 +55,11 @@ private:
     std::string clientip;
     // std::mutex mut;
     std::unordered_map<std::string, std::string> configData;
+    std::string configDataStr;
     void parseConfigJsonCache(const std::string& response);
     void parseConfigStrCache(const std::string& response);
     void parseConfigDatabases(const std::string& response);
+
+    void cleanCache();
 };
 }

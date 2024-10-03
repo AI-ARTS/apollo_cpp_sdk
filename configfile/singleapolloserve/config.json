@@ -1,0 +1,9 @@
+{
+    "host" :"localhost:8080",
+    "appId" :"aldd",
+    "cluster" :"arvintzhang", 
+    "longPollingTimeout" :10,
+    "namesapceName":"RJDLOG",
+    "configfiledir":"/home/aldd/JD/apollo_cpp_sdk/configfile/source",
+    "singleConfigCacheSize":200 
+}
