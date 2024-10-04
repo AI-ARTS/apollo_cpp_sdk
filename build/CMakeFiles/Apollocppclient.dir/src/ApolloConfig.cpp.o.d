@@ -166,8 +166,43 @@ CMakeFiles/Apollocppclient.dir/src/ApolloConfig.cpp.o: \
  /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h \
  /usr/include/c++/11/stdexcept \
  /home/aldd/JD/apollo_cpp_sdk/include/HttpClient.hpp \
- /usr/include/c++/11/iostream /usr/include/c++/11/ostream \
- /usr/include/c++/11/ios /usr/include/c++/11/bits/ios_base.h \
+ /usr/local/include/log4cpp/Category.hh \
+ /usr/local/include/log4cpp/Portability.hh \
+ /usr/local/include/log4cpp/config.h /usr/local/include/log4cpp/Export.hh \
+ /usr/local/include/log4cpp/Appender.hh /usr/include/c++/11/map \
+ /usr/include/c++/11/bits/stl_tree.h /usr/include/c++/11/bits/stl_map.h \
+ /usr/include/c++/11/bits/stl_multimap.h /usr/include/c++/11/set \
+ /usr/include/c++/11/bits/stl_set.h \
+ /usr/include/c++/11/bits/stl_multiset.h /usr/include/c++/11/vector \
+ /usr/include/c++/11/bits/stl_vector.h \
+ /usr/include/c++/11/bits/stl_bvector.h \
+ /usr/include/c++/11/bits/vector.tcc \
+ /usr/include/x86_64-linux-gnu/sys/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
+ /usr/include/x86_64-linux-gnu/bits/statx.h /usr/include/linux/stat.h \
+ /usr/include/linux/types.h /usr/include/x86_64-linux-gnu/asm/types.h \
+ /usr/include/asm-generic/types.h /usr/include/asm-generic/int-ll64.h \
+ /usr/include/x86_64-linux-gnu/asm/bitsperlong.h \
+ /usr/include/asm-generic/bitsperlong.h /usr/include/linux/posix_types.h \
+ /usr/include/linux/stddef.h \
+ /usr/include/x86_64-linux-gnu/asm/posix_types.h \
+ /usr/include/x86_64-linux-gnu/asm/posix_types_64.h \
+ /usr/include/asm-generic/posix_types.h \
+ /usr/include/x86_64-linux-gnu/bits/statx-generic.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_statx.h \
+ /usr/include/fcntl.h /usr/include/x86_64-linux-gnu/bits/fcntl.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
+ /usr/include/linux/falloc.h /usr/local/include/log4cpp/Priority.hh \
+ /usr/local/include/log4cpp/Layout.hh \
+ /usr/local/include/log4cpp/LoggingEvent.hh \
+ /usr/local/include/log4cpp/TimeStamp.hh \
+ /usr/local/include/log4cpp/threading/Threading.hh \
+ /usr/local/include/log4cpp/threading/PThreads.hh /usr/include/assert.h \
+ /usr/local/include/log4cpp/CategoryStream.hh /usr/include/c++/11/ios \
+ /usr/include/c++/11/bits/ios_base.h \
  /usr/include/c++/11/bits/locale_classes.h \
  /usr/include/c++/11/bits/locale_classes.tcc \
  /usr/include/c++/11/streambuf /usr/include/c++/11/bits/streambuf.tcc \
@@ -178,9 +213,13 @@ CMakeFiles/Apollocppclient.dir/src/ApolloConfig.cpp.o: \
  /usr/include/c++/11/bits/streambuf_iterator.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
  /usr/include/c++/11/bits/locale_facets.tcc \
- /usr/include/c++/11/bits/basic_ios.tcc \
- /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
+ /usr/include/c++/11/bits/basic_ios.tcc /usr/include/c++/11/sstream \
+ /usr/include/c++/11/istream /usr/include/c++/11/ostream \
+ /usr/include/c++/11/bits/ostream.tcc \
  /usr/include/c++/11/bits/istream.tcc \
+ /usr/include/c++/11/bits/sstream.tcc \
+ /usr/local/include/log4cpp/Manipulator.hh /usr/include/c++/11/iostream \
+ /usr/local/include/log4cpp/convenience.h /usr/include/c++/11/cstdarg \
  /usr/local/include/nlohmann/json.hpp /usr/include/c++/11/algorithm \
  /usr/include/c++/11/bits/stl_algo.h \
  /usr/include/c++/11/bits/algorithmfwd.h \
@@ -188,17 +227,13 @@ CMakeFiles/Apollocppclient.dir/src/ApolloConfig.cpp.o: \
  /usr/include/c++/11/bits/uniform_int_dist.h \
  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
  /usr/include/c++/11/functional /usr/include/c++/11/bits/std_function.h \
- /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_vector.h \
- /usr/include/c++/11/bits/stl_bvector.h \
- /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/cstddef \
- /usr/include/c++/11/iterator /usr/include/c++/11/bits/stream_iterator.h \
+ /usr/include/c++/11/cstddef /usr/include/c++/11/iterator \
+ /usr/include/c++/11/bits/stream_iterator.h \
  /usr/local/include/nlohmann/adl_serializer.hpp \
  /usr/local/include/nlohmann/detail/abi_macros.hpp \
  /usr/local/include/nlohmann/detail/conversions/from_json.hpp \
  /usr/include/c++/11/forward_list /usr/include/c++/11/bits/forward_list.h \
- /usr/include/c++/11/bits/forward_list.tcc /usr/include/c++/11/map \
- /usr/include/c++/11/bits/stl_tree.h /usr/include/c++/11/bits/stl_map.h \
- /usr/include/c++/11/bits/stl_multimap.h /usr/include/c++/11/valarray \
+ /usr/include/c++/11/bits/forward_list.tcc /usr/include/c++/11/valarray \
  /usr/include/c++/11/cmath /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
@@ -237,7 +272,6 @@ CMakeFiles/Apollocppclient.dir/src/ApolloConfig.cpp.o: \
  /usr/local/include/nlohmann/detail/meta/void_t.hpp \
  /usr/local/include/nlohmann/thirdparty/hedley/hedley.hpp \
  /usr/include/c++/11/version /usr/include/c++/11/cassert \
- /usr/include/assert.h \
  /usr/local/include/nlohmann/detail/string_escape.hpp \
  /usr/local/include/nlohmann/detail/input/position_t.hpp \
  /usr/local/include/nlohmann/detail/meta/cpp_future.hpp \
@@ -258,8 +292,7 @@ CMakeFiles/Apollocppclient.dir/src/ApolloConfig.cpp.o: \
  /usr/include/libintl.h /usr/include/c++/11/bits/codecvt.h \
  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
  /usr/include/c++/11/bits/locale_conv.h /usr/include/c++/11/iomanip \
- /usr/include/c++/11/bits/quoted_string.h /usr/include/c++/11/sstream \
- /usr/include/c++/11/bits/sstream.tcc /usr/include/c++/11/codecvt \
+ /usr/include/c++/11/bits/quoted_string.h /usr/include/c++/11/codecvt \
  /usr/include/c++/11/bits/fs_dir.h /usr/include/c++/11/bits/fs_ops.h \
  /usr/local/include/nlohmann/detail/conversions/to_json.hpp \
  /usr/local/include/nlohmann/detail/iterators/iteration_proxy.hpp \

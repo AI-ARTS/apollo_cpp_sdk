@@ -143,7 +143,8 @@ std::string ApolloConfig::getDataString()
     return configDataStr;
 }
 
-std::unordered_map<std::string, std::string> ApolloConfig::getConfigData() const{
+std::unordered_map<std::string, std::string> ApolloConfig::getConfigData(){
+    std::shared_lock<std::shared_mutex> lock(dataMutex);
     return configData;
 }
 

@@ -3,6 +3,7 @@
 #include<iostream>
 #include <unistd.h>
 namespace apollocpp{
+log4cpp::Category& HttpClient::log = log4cpp::Category::getRoot();
 
 size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
     ((std::string*)userp)->append((char*)contents, size * nmemb);
@@ -28,7 +29,8 @@ std::string HttpClient::get(const std::string& url) {
                 std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
                 readBuffer.clear();  // 清空读取缓冲区
                 if (temp!=5){
-                    sleep(1);
+                    sleep(1); // 短连接容灾重试
+                    log.info("Disaster recovery retry.");
                 }
             }
         }

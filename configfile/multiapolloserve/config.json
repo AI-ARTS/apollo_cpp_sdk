@@ -1,0 +1,19 @@
+[
+    {
+        "host":"localhost:8080",
+        "apps":[
+            {
+                "appid":"aldd",
+                "cluster":[
+                    {
+                        "clusterName":"arvintzhang",
+                        "clusterNameSpaceName":["application","RHDLOG"]
+                    }
+                ],
+                "longPollingTimeout" :10,
+                "configfiledir":"/home/aldd/JD/apollo_cpp_sdk/configfile/source",
+                "singleConfigCacheSize":200 
+            }
+        ]
+    }
+]

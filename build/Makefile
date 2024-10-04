@@ -217,6 +217,30 @@ src/HttpClient.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Apollocppclient.dir/build.make CMakeFiles/Apollocppclient.dir/src/HttpClient.cpp.s
 .PHONY : src/HttpClient.cpp.s
 
+src/MultiServerAppidCluster.o: src/MultiServerAppidCluster.cpp.o
+.PHONY : src/MultiServerAppidCluster.o
+
+# target to build an object file
+src/MultiServerAppidCluster.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Apollocppclient.dir/build.make CMakeFiles/Apollocppclient.dir/src/MultiServerAppidCluster.cpp.o
+.PHONY : src/MultiServerAppidCluster.cpp.o
+
+src/MultiServerAppidCluster.i: src/MultiServerAppidCluster.cpp.i
+.PHONY : src/MultiServerAppidCluster.i
+
+# target to preprocess a source file
+src/MultiServerAppidCluster.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Apollocppclient.dir/build.make CMakeFiles/Apollocppclient.dir/src/MultiServerAppidCluster.cpp.i
+.PHONY : src/MultiServerAppidCluster.cpp.i
+
+src/MultiServerAppidCluster.s: src/MultiServerAppidCluster.cpp.s
+.PHONY : src/MultiServerAppidCluster.s
+
+# target to generate assembly for a file
+src/MultiServerAppidCluster.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Apollocppclient.dir/build.make CMakeFiles/Apollocppclient.dir/src/MultiServerAppidCluster.cpp.s
+.PHONY : src/MultiServerAppidCluster.cpp.s
+
 src/RemoteConfigLongPollService.o: src/RemoteConfigLongPollService.cpp.o
 .PHONY : src/RemoteConfigLongPollService.o
 
@@ -332,6 +356,9 @@ help:
 	@echo "... src/HttpClient.o"
 	@echo "... src/HttpClient.i"
 	@echo "... src/HttpClient.s"
+	@echo "... src/MultiServerAppidCluster.o"
+	@echo "... src/MultiServerAppidCluster.i"
+	@echo "... src/MultiServerAppidCluster.s"
 	@echo "... src/RemoteConfigLongPollService.o"
 	@echo "... src/RemoteConfigLongPollService.i"
 	@echo "... src/RemoteConfigLongPollService.s"

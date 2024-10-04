@@ -37,7 +37,7 @@ public:
     void fetchConfigStrCache();
     void fetchConfigDatabases();
     // 这里实时的更新，加下锁
-    std::unordered_map<std::string, std::string> getConfigData()const;
+    std::unordered_map<std::string, std::string> getConfigData();
     std::string getValue(const std::string& key);
     void viewDataJson();
     std::string getDataString();

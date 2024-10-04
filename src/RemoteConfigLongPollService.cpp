@@ -199,14 +199,19 @@ void RemoteConfigLongPollService::notifyClients(const std::string& reNamespaceNa
         newNode->data->fetchConfigJsonCache(); // 更新结果
     }
     log.info(reNamespaceName+" update: "+ apolloconfig[reNamespaceName]->data->getDataString());
-    flushdisk(apolloconfig[reNamespaceName]->data,reNamespaceName);
+    auto apolloval = apolloconfig[reNamespaceName];
+    Executor::submit([this, apolloval, reNamespaceName](){
+        log.info("flushdisk:"+reNamespaceName);
+        this->flushdisk(apolloval->data, reNamespaceName);
+    });
+    // flushdisk(apolloconfig[reNamespaceName]->data,reNamespaceName);
 }
 
 void RemoteConfigLongPollService::flushdisk(const std::shared_ptr<ApolloConfig> &apolloc, const std::string namespaceName)
 {
     // 就是写文件
     nlohmann::json j = apolloc->getConfigData();// 拿到这个数据
-    std::string place = configconfigdir+"/"+namespaceName+".json";
+    std::string place = configconfigdir+"/"+host+"_"+appId+"_"+cluster+"_"+namespaceName+".json";
     std::ofstream output(place,std::ios_base::out);
     if (output.is_open()){
         output<<j.dump();

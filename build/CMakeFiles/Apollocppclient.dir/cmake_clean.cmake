@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Apollocppclient.dir/src/Executor.cpp.o.d"
   "CMakeFiles/Apollocppclient.dir/src/HttpClient.cpp.o"
   "CMakeFiles/Apollocppclient.dir/src/HttpClient.cpp.o.d"
+  "CMakeFiles/Apollocppclient.dir/src/MultiServerAppidCluster.cpp.o"
+  "CMakeFiles/Apollocppclient.dir/src/MultiServerAppidCluster.cpp.o.d"
   "CMakeFiles/Apollocppclient.dir/src/RemoteConfigLongPollService.cpp.o"
   "CMakeFiles/Apollocppclient.dir/src/RemoteConfigLongPollService.cpp.o.d"
   "CMakeFiles/Apollocppclient.dir/src/Threadpool.cpp.o"

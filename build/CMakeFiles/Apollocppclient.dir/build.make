@@ -114,10 +114,24 @@ CMakeFiles/Apollocppclient.dir/src/HttpClient.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Apollocppclient.dir/src/HttpClient.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aldd/JD/apollo_cpp_sdk/src/HttpClient.cpp -o CMakeFiles/Apollocppclient.dir/src/HttpClient.cpp.s
 
+CMakeFiles/Apollocppclient.dir/src/MultiServerAppidCluster.cpp.o: CMakeFiles/Apollocppclient.dir/flags.make
+CMakeFiles/Apollocppclient.dir/src/MultiServerAppidCluster.cpp.o: ../src/MultiServerAppidCluster.cpp
+CMakeFiles/Apollocppclient.dir/src/MultiServerAppidCluster.cpp.o: CMakeFiles/Apollocppclient.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/aldd/JD/apollo_cpp_sdk/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Apollocppclient.dir/src/MultiServerAppidCluster.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Apollocppclient.dir/src/MultiServerAppidCluster.cpp.o -MF CMakeFiles/Apollocppclient.dir/src/MultiServerAppidCluster.cpp.o.d -o CMakeFiles/Apollocppclient.dir/src/MultiServerAppidCluster.cpp.o -c /home/aldd/JD/apollo_cpp_sdk/src/MultiServerAppidCluster.cpp
+
+CMakeFiles/Apollocppclient.dir/src/MultiServerAppidCluster.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Apollocppclient.dir/src/MultiServerAppidCluster.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aldd/JD/apollo_cpp_sdk/src/MultiServerAppidCluster.cpp > CMakeFiles/Apollocppclient.dir/src/MultiServerAppidCluster.cpp.i
+
+CMakeFiles/Apollocppclient.dir/src/MultiServerAppidCluster.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Apollocppclient.dir/src/MultiServerAppidCluster.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aldd/JD/apollo_cpp_sdk/src/MultiServerAppidCluster.cpp -o CMakeFiles/Apollocppclient.dir/src/MultiServerAppidCluster.cpp.s
+
 CMakeFiles/Apollocppclient.dir/src/RemoteConfigLongPollService.cpp.o: CMakeFiles/Apollocppclient.dir/flags.make
 CMakeFiles/Apollocppclient.dir/src/RemoteConfigLongPollService.cpp.o: ../src/RemoteConfigLongPollService.cpp
 CMakeFiles/Apollocppclient.dir/src/RemoteConfigLongPollService.cpp.o: CMakeFiles/Apollocppclient.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/aldd/JD/apollo_cpp_sdk/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Apollocppclient.dir/src/RemoteConfigLongPollService.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/aldd/JD/apollo_cpp_sdk/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Apollocppclient.dir/src/RemoteConfigLongPollService.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Apollocppclient.dir/src/RemoteConfigLongPollService.cpp.o -MF CMakeFiles/Apollocppclient.dir/src/RemoteConfigLongPollService.cpp.o.d -o CMakeFiles/Apollocppclient.dir/src/RemoteConfigLongPollService.cpp.o -c /home/aldd/JD/apollo_cpp_sdk/src/RemoteConfigLongPollService.cpp
 
 CMakeFiles/Apollocppclient.dir/src/RemoteConfigLongPollService.cpp.i: cmake_force
@@ -131,7 +145,7 @@ CMakeFiles/Apollocppclient.dir/src/RemoteConfigLongPollService.cpp.s: cmake_forc
 CMakeFiles/Apollocppclient.dir/src/Threadpool.cpp.o: CMakeFiles/Apollocppclient.dir/flags.make
 CMakeFiles/Apollocppclient.dir/src/Threadpool.cpp.o: ../src/Threadpool.cpp
 CMakeFiles/Apollocppclient.dir/src/Threadpool.cpp.o: CMakeFiles/Apollocppclient.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/aldd/JD/apollo_cpp_sdk/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Apollocppclient.dir/src/Threadpool.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/aldd/JD/apollo_cpp_sdk/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Apollocppclient.dir/src/Threadpool.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Apollocppclient.dir/src/Threadpool.cpp.o -MF CMakeFiles/Apollocppclient.dir/src/Threadpool.cpp.o.d -o CMakeFiles/Apollocppclient.dir/src/Threadpool.cpp.o -c /home/aldd/JD/apollo_cpp_sdk/src/Threadpool.cpp
 
 CMakeFiles/Apollocppclient.dir/src/Threadpool.cpp.i: cmake_force
@@ -145,7 +159,7 @@ CMakeFiles/Apollocppclient.dir/src/Threadpool.cpp.s: cmake_force
 CMakeFiles/Apollocppclient.dir/src/common.cpp.o: CMakeFiles/Apollocppclient.dir/flags.make
 CMakeFiles/Apollocppclient.dir/src/common.cpp.o: ../src/common.cpp
 CMakeFiles/Apollocppclient.dir/src/common.cpp.o: CMakeFiles/Apollocppclient.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/aldd/JD/apollo_cpp_sdk/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Apollocppclient.dir/src/common.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/aldd/JD/apollo_cpp_sdk/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Apollocppclient.dir/src/common.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Apollocppclient.dir/src/common.cpp.o -MF CMakeFiles/Apollocppclient.dir/src/common.cpp.o.d -o CMakeFiles/Apollocppclient.dir/src/common.cpp.o -c /home/aldd/JD/apollo_cpp_sdk/src/common.cpp
 
 CMakeFiles/Apollocppclient.dir/src/common.cpp.i: cmake_force
@@ -161,6 +175,7 @@ Apollocppclient_OBJECTS = \
 "CMakeFiles/Apollocppclient.dir/src/ApolloConfig.cpp.o" \
 "CMakeFiles/Apollocppclient.dir/src/Executor.cpp.o" \
 "CMakeFiles/Apollocppclient.dir/src/HttpClient.cpp.o" \
+"CMakeFiles/Apollocppclient.dir/src/MultiServerAppidCluster.cpp.o" \
 "CMakeFiles/Apollocppclient.dir/src/RemoteConfigLongPollService.cpp.o" \
 "CMakeFiles/Apollocppclient.dir/src/Threadpool.cpp.o" \
 "CMakeFiles/Apollocppclient.dir/src/common.cpp.o"
@@ -171,6 +186,7 @@ Apollocppclient_EXTERNAL_OBJECTS =
 ../lib/libApollocppclient.so: CMakeFiles/Apollocppclient.dir/src/ApolloConfig.cpp.o
 ../lib/libApollocppclient.so: CMakeFiles/Apollocppclient.dir/src/Executor.cpp.o
 ../lib/libApollocppclient.so: CMakeFiles/Apollocppclient.dir/src/HttpClient.cpp.o
+../lib/libApollocppclient.so: CMakeFiles/Apollocppclient.dir/src/MultiServerAppidCluster.cpp.o
 ../lib/libApollocppclient.so: CMakeFiles/Apollocppclient.dir/src/RemoteConfigLongPollService.cpp.o
 ../lib/libApollocppclient.so: CMakeFiles/Apollocppclient.dir/src/Threadpool.cpp.o
 ../lib/libApollocppclient.so: CMakeFiles/Apollocppclient.dir/src/common.cpp.o
@@ -180,7 +196,7 @@ Apollocppclient_EXTERNAL_OBJECTS =
 ../lib/libApollocppclient.so: /usr/lib/x86_64-linux-gnu/libcurl.so
 ../lib/libApollocppclient.so: /usr/local/lib/liblog4cpp.so
 ../lib/libApollocppclient.so: CMakeFiles/Apollocppclient.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/aldd/JD/apollo_cpp_sdk/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX shared library ../lib/libApollocppclient.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/aldd/JD/apollo_cpp_sdk/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX shared library ../lib/libApollocppclient.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Apollocppclient.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
