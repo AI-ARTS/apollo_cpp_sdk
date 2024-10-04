@@ -17,7 +17,7 @@
 #include "HttpClient.hpp"
 #include <condition_variable>
 #include <log4cpp/Category.hh>
-#define APOLLOCONFIGCACHESIZE 2000 // 保存的是2000个
+#define APOLLOCONFIGCACHESIZE 200 // 保存的是2000个
 
 // 此为单应用单集群多命名空间配置感知
 // 后序在这个基础上开发多apollo多应用多集群，多命名空间配置感知系统
@@ -78,6 +78,7 @@ private:
 
     std::string assembleLongPollRefreshUrl();
     void processResponse(const std::string& response);
+
 public:
     RemoteConfigLongPollService(const std::string& host, const std::string& appId, const std::string& cluster, const std::string& namesapceName="", long longPollingTimeout=60L)
         : longPollStarted(false), longPollingStopped(false), appId(appId), cluster(cluster), host(host) {
@@ -107,9 +108,9 @@ public:
     void startLongPolling();
     void stopLongPolling();
     // 增加命名空间
-    void addNotifications(const std::string& namespaceName);
-    void addNotifications(const std::vector<std::string>& vec);
-    void addNotifications(const std::unordered_map<std::string, std::string> &maps);
+    void addNotifications(const std::string& namespaceName, bool flag=true);
+    void addNotifications(const std::vector<std::string>& vec,bool flag=true);
+    void addNotifications(const std::unordered_map<std::string, std::string> &maps,bool flag=true);
 
     // 删除某个命名空间
     void deleteNotifications(const std::string& namespaceName);
