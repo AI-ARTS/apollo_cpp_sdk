@@ -5,8 +5,8 @@
 #include<sstream>
 
 namespace apollocpp{
-ApolloConfig::ApolloConfig(const std::string& host, const std::string& appId, const std::string& cluster, const std::string& namespaceName)
-    :host(host), appId(appId), cluster(cluster), namespaceName(namespaceName) {
+ApolloConfig::ApolloConfig(const std::string& host, const std::string& appId, const std::string& cluster, const std::string& namespaceName, const std::string& secret)
+    :host(host), appId(appId), cluster(cluster), namespaceName(namespaceName), secret(secret) {
         // 通过这里组装三种url
         urlJsonCache = "http://"+host+"/configfiles/json/"+appId+"/"+cluster+"/"+namespaceName;
         urlStrCache = "http://"+host+"/configfiles/"+appId+"/"+cluster+"/"+namespaceName;
@@ -50,18 +50,18 @@ ApolloConfig::~ApolloConfig() {}
 // URL: {config_server_url}/configs/{appId}/{clusterName}/{namespaceName}?releaseKey={releaseKey}&messages={messages}&label={label}&ip={clientIp}
 void ApolloConfig::fetchConfigJsonCache() {
     // HttpClient client;    
-    std::string response = HttpClient::get(urlJsonCache);
+    std::string response = HttpClient::get(urlJsonCache, appId, secret);
     parseConfigJsonCache(response);
 }
 
 void ApolloConfig::fetchConfigStrCache() {
     // HttpClient client;    
-    std::string response = HttpClient::get(urlStrCache);
+    std::string response = HttpClient::get(urlStrCache,appId, secret);
     parseConfigStrCache(response);
 }
 void ApolloConfig::fetchConfigDatabases() {
     // HttpClient client;    
-    std::string response = HttpClient::get(urlDatabases);
+    std::string response = HttpClient::get(urlDatabases,appId, secret);
     parseConfigDatabases(response);
 }
 
@@ -73,6 +73,7 @@ std::string ApolloConfig::getValue(const std::string& key) {
 void ApolloConfig::parseConfigJsonCache(const std::string& response) {
     nlohmann::json j2;
     std::lock_guard<std::shared_mutex> lock(dataMutex);
+    log.info("new config: "+response);
     cleanCache();
     try
     {

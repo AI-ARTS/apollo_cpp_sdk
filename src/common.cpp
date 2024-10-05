@@ -1,4 +1,7 @@
 #include"common.hpp"
+#include <openssl/hmac.h>
+#include <openssl/evp.h>
+#include <openssl/buffer.h>
 
 namespace apollocpp{
 
@@ -66,4 +69,34 @@ std::string url_decode(const std::string& str)
     }
     return strTemp;
 }
+std::string base64_encode(const unsigned char *input, int length)
+{
+    BIO* bio;
+    BIO* b64;
+    BUF_MEM* bufferPtr;
+
+    b64 = BIO_new(BIO_f_base64());
+    bio = BIO_new(BIO_s_mem());
+    bio = BIO_push(b64, bio);
+    BIO_set_flags(bio, BIO_FLAGS_BASE64_NO_NL); // 不使用换行符
+    BIO_write(bio, input, length);
+    BIO_flush(bio);
+    BIO_get_mem_ptr(bio, &bufferPtr);
+    std::string result(bufferPtr->data, bufferPtr->length);
+    BIO_free_all(bio);
+    return result;
+}
+
+std::string signature(const std::string &timestamp, const std::string &uri, const std::string &secret) {
+    std::string stringToSign = timestamp + "\n" + uri;
+    unsigned char* hmacResult;
+    unsigned int hmacLength;
+
+    hmacResult = HMAC(EVP_sha1(), secret.c_str(), secret.length(),
+                      reinterpret_cast<const unsigned char*>(stringToSign.c_str()),
+                      stringToSign.length(), nullptr, &hmacLength);
+
+    return base64_encode(hmacResult, hmacLength);
+}
+
 };

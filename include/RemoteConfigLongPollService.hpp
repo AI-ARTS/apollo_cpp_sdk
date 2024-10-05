@@ -66,6 +66,8 @@ private:
     std::string configJsonFile;
     std::string configconfigdir="./"; // 默认位置
     
+    std::string secretKey;
+    std::string uri;
     std::condition_variable urlupdatecond;
     
     // Simulated function to perform HTTP GET request
@@ -80,8 +82,8 @@ private:
     void processResponse(const std::string& response);
 
 public:
-    RemoteConfigLongPollService(const std::string& host, const std::string& appId, const std::string& cluster, const std::string& namesapceName="", long longPollingTimeout=60L)
-        : longPollStarted(false), longPollingStopped(false), appId(appId), cluster(cluster), host(host) {
+    RemoteConfigLongPollService(const std::string& host, const std::string& appId, const std::string& cluster, const std::string& namesapceName="", long longPollingTimeout=60L, const std::string& secretKey="")
+        : longPollStarted(false), longPollingStopped(false), appId(appId), cluster(cluster), host(host), secretKey(secretKey) {
         if (!namesapceName.empty()){
             addNotifications(namesapceName); // 增加命名空间
         }

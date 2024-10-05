@@ -164,9 +164,7 @@ CMakeFiles/Apollocppclient.dir/src/ApolloConfig.cpp.o: \
  /usr/include/c++/11/ctime /usr/include/c++/11/bits/parse_numbers.h \
  /usr/include/c++/11/bits/std_mutex.h /usr/include/c++/11/system_error \
  /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h \
- /usr/include/c++/11/stdexcept \
- /home/aldd/JD/apollo_cpp_sdk/include/HttpClient.hpp \
- /usr/local/include/log4cpp/Category.hh \
+ /usr/include/c++/11/stdexcept /usr/local/include/log4cpp/Category.hh \
  /usr/local/include/log4cpp/Portability.hh \
  /usr/local/include/log4cpp/config.h /usr/local/include/log4cpp/Export.hh \
  /usr/local/include/log4cpp/Appender.hh /usr/include/c++/11/map \
@@ -220,6 +218,7 @@ CMakeFiles/Apollocppclient.dir/src/ApolloConfig.cpp.o: \
  /usr/include/c++/11/bits/sstream.tcc \
  /usr/local/include/log4cpp/Manipulator.hh /usr/include/c++/11/iostream \
  /usr/local/include/log4cpp/convenience.h /usr/include/c++/11/cstdarg \
+ /home/aldd/JD/apollo_cpp_sdk/include/HttpClient.hpp \
  /usr/local/include/nlohmann/json.hpp /usr/include/c++/11/algorithm \
  /usr/include/c++/11/bits/stl_algo.h \
  /usr/include/c++/11/bits/algorithmfwd.h \

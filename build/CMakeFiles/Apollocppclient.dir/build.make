@@ -194,6 +194,8 @@ Apollocppclient_EXTERNAL_OBJECTS =
 ../lib/libApollocppclient.so: /usr/lib/x86_64-linux-gnu/libcurl.so
 ../lib/libApollocppclient.so: /usr/local/lib/liblog4cpp.so
 ../lib/libApollocppclient.so: /usr/lib/x86_64-linux-gnu/libcurl.so
+../lib/libApollocppclient.so: /usr/lib/x86_64-linux-gnu/libssl.so
+../lib/libApollocppclient.so: /usr/lib/x86_64-linux-gnu/libcrypto.so
 ../lib/libApollocppclient.so: /usr/local/lib/liblog4cpp.so
 ../lib/libApollocppclient.so: CMakeFiles/Apollocppclient.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/aldd/JD/apollo_cpp_sdk/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX shared library ../lib/libApollocppclient.so"

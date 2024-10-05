@@ -3,7 +3,7 @@
 #include <unordered_map>
 #include <memory>
 #include <shared_mutex>
-
+#include <log4cpp/Category.hh>
 /*
 * 接口文档参考官方
 * https://www.apolloconfig.com/#/zh/client/other-language-client-user-guide
@@ -27,9 +27,9 @@ struct EvnData
 class ApolloConfig {
 private:
 std::shared_mutex dataMutex;
-
+log4cpp::Category& log = log4cpp::Category::getRoot(); 
 public:
-    ApolloConfig(const std::string& host,const std::string& appId, const std::string& cluster, const std::string& namespaceName);
+    ApolloConfig(const std::string& host,const std::string& appId, const std::string& cluster, const std::string& namespaceName, const std::string& secret="");
     ApolloConfig(const EvnData& evn);
     ~ApolloConfig();
 
@@ -53,6 +53,7 @@ private:
     std::string messages;
     std::string label;
     std::string clientip;
+    std::string secret;
     // std::mutex mut;
     std::unordered_map<std::string, std::string> configData;
     std::string configDataStr;

@@ -38,7 +38,7 @@ void RemoteConfigLongPollService::refreshConnectApolloConfig(){
         }else{
             namesapceName = "";
         }
-        longPollingTimeout = static_cast<long>(j.at("longPollingTimeout"))>20L?(20L):static_cast<long>(j.at("longPollingTimeout"));       
+        longPollingTimeout = static_cast<long>(j.at("longPollingTimeout"))<=20L?(20L):static_cast<long>(j.at("longPollingTimeout"));       
         if (j.contains("configfiledir")){
             configconfigdir = j.at("configfiledir");
         }else{
@@ -49,6 +49,9 @@ void RemoteConfigLongPollService::refreshConnectApolloConfig(){
             apolloconfigSize = static_cast<size_t>(j.at("singleConfigCacheSize"))>APOLLOCONFIGCACHESIZE?APOLLOCONFIGCACHESIZE:static_cast<size_t>(j.at("singleConfigCacheSize"));
         }else{
             apolloconfigSize = 100;
+        }
+        if (j.contains("secret")){
+            secretKey = j.at("secret");
         }
     }
     catch(const std::exception& e)
@@ -69,11 +72,29 @@ void RemoteConfigLongPollService::httpGet(const std::string& url) {
         // 启用 TCP KeepAlive
         curl_easy_setopt(curl, CURLOPT_TCP_KEEPALIVE, 1L);
         curl_easy_setopt(curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+        // 添加请求头
 
+    // 转换为时间戳（自1970年1月1日以来的秒数）
+        log.info("URL: "+url);
         while (!longPollingStopped) {
             readBuffer.clear();  // 清空读取缓冲区
             curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
             curl_easy_setopt(curl, CURLOPT_TIMEOUT, longPollingTimeout);  // 超时设置
+            if (!secretKey.empty()){
+                // 秘钥不等于空那就进行加密操作
+                struct curl_slist* headers = NULL;
+                auto now = std::chrono::system_clock::now();
+                auto timestamp = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();  // 毫秒级时间戳
+                std::string sign = signature(std::to_string(timestamp), uri, secretKey);
+                std::string Authorization = "Authorization: Apollo " + appId + ":" + sign;
+                std::string Timestamp = "Timestamp: " + std::to_string(timestamp);
+                log.info(Authorization);
+                log.info(Timestamp);
+                headers = curl_slist_append(headers,Authorization.c_str());
+                headers = curl_slist_append(headers,Timestamp.c_str());
+                curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+            }
+
             CURLcode res = curl_easy_perform(curl);
             if (res != CURLE_OK) {
                 if (res == CURLE_COULDNT_CONNECT) {
@@ -147,7 +168,10 @@ std::string RemoteConfigLongPollService::assembleLongPollRefreshUrl(){
     std::string jData = j.dump();
     log.info("url parameter: "+jData);
     std::string encoded_notifications = apollocpp::url_encode(jData);
-    std::string url = "http://"+host+"/notifications/v2?appId=" + appId + "&cluster=" + cluster+"&notifications="+encoded_notifications;
+    std::string query = "appId=" + appId + "&cluster=" + cluster+"&notifications="+encoded_notifications;
+    std::string path = "/notifications/v2";
+    uri = path+"?"+query;
+    std::string url = "http://"+host+path+"?"+query;
     return url;
 }
 
@@ -156,9 +180,27 @@ void RemoteConfigLongPollService::processResponse(const std::string& response) {
         return;
     }
     log.info("response: "+response);
-
+    // 首先解析出状态码
     // Parse JSON response (simulated as JSON string)
     nlohmann::json responseJson = nlohmann::json::parse(response);
+    if (responseJson.contains("status")){
+        // 包含状态码
+        int status = responseJson["status"].get<int>();
+        if (status == 400){
+            log.error("Error in client input parameters.");
+        }else if (status == 401){
+            log.error("Client not authorized.");
+        }else if (status == 404){
+            log.error("The resource that the interface wants to access does not exist.");
+        }else if (status == 405){
+            log.error("The method used to access the interface is incorrect.");
+        }else if (status == 500){
+            log.error("Unknown error.");
+        }else{
+            log.error("Unknown error.");
+        }
+        return;
+    }
     std::vector<std::unordered_map<std::string, std::string>> maps;
     for (const auto& notification : responseJson) {
         std::string reNamespaceName = notification["namespaceName"];
@@ -194,7 +236,8 @@ void RemoteConfigLongPollService::notifyClients(const std::string& reNamespaceNa
         }
         Node* newNode = new Node(reNamespaceName);
         apolloconfig[reNamespaceName] = newNode;
-        newNode->data = std::make_shared<ApolloConfig>(host, appId, cluster, reNamespaceName);
+        // 需要验证就需要加秘钥，不需要验证就不加
+        newNode->data = std::make_shared<ApolloConfig>(host, appId, cluster, reNamespaceName,secretKey);
         insertNodeHead(newNode);
         newNode->data->fetchConfigJsonCache(); // 更新结果
     }
@@ -204,7 +247,6 @@ void RemoteConfigLongPollService::notifyClients(const std::string& reNamespaceNa
         log.info("flushdisk:"+reNamespaceName);
         this->flushdisk(apolloval->data, reNamespaceName);
     });
-    // flushdisk(apolloconfig[reNamespaceName]->data,reNamespaceName);
 }
 
 void RemoteConfigLongPollService::flushdisk(const std::shared_ptr<ApolloConfig> &apolloc, const std::string namespaceName)

@@ -4,7 +4,7 @@
 #include<unordered_map>
 #include<memory>
 namespace apollocpp{
-    class APP{
+    class APP{ // 单app多集群
     private:
         std::string appid;
         // key：集群，val：集群命名空间
