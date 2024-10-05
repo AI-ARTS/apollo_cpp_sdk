@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC  -O0 -g -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function -shared -Wl,-soname,libREMOTECONFIGLONGPOLLSERVICE.so -o ../lib/libREMOTECONFIGLONGPOLLSERVICE.so CMakeFiles/REMOTECONFIGLONGPOLLSERVICE.dir/src/RemoteConfigLongPollService.cpp.o 
