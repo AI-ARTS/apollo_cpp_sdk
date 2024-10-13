@@ -2,6 +2,13 @@
 #include <openssl/hmac.h>
 #include <openssl/evp.h>
 #include <openssl/buffer.h>
+#include <cstring>
+#include <sys/types.h>
+#include <ifaddrs.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+#define NI_MAXHOST 1025
 
 namespace apollocpp{
 
@@ -99,4 +106,36 @@ std::string signature(const std::string &timestamp, const std::string &uri, cons
     return base64_encode(hmacResult, hmacLength);
 }
 
-};
+std::string getLocalIP() {
+    struct ifaddrs *ifaddr, *ifa;
+    char host[NI_MAXHOST];
+
+    // 获取本机网络接口地址信息
+    if (getifaddrs(&ifaddr) == -1) {
+        std::cerr << "Error: getifaddrs() failed" << std::endl;
+        return "";
+    }
+
+    // 遍历每个接口
+    for (ifa = ifaddr; ifa != nullptr; ifa = ifa->ifa_next) {
+        if (ifa->ifa_addr == nullptr)
+            continue;
+
+        // 只处理 AF_INET (IPv4) 地址
+        if (ifa->ifa_addr->sa_family == AF_INET) {
+            int s = getnameinfo(ifa->ifa_addr, sizeof(struct sockaddr_in),
+                                host, NI_MAXHOST, nullptr, 0, NI_NUMERICHOST);
+            if (s != 0) {
+                std::cerr << "getnameinfo() failed: " << gai_strerror(s) << std::endl;
+                continue;
+            }
+            std::cout << "Interface: " << ifa->ifa_name << " IP Address: " << host << std::endl;
+            freeifaddrs(ifaddr);  // 释放分配的内存
+            return std::string(host);  // 返回找到的第一个IP
+        }
+    }
+
+    freeifaddrs(ifaddr);  // 释放分配的内存
+    return "";  // 没有找到IP时返回空字符串
+}
+}

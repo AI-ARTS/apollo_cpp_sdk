@@ -25,10 +25,11 @@ size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
 
 
 std::string HttpClient::get(const std::string& url, const std::string& appId,const std::string& secret) {
+    log.info("get url:"+url);
     CURL* curl;
     CURLcode res;
     std::string readBuffer;
-
+    int time = 1;
     curl = curl_easy_init();
     int temp = 0;
     while (true){
@@ -57,11 +58,12 @@ std::string HttpClient::get(const std::string& url, const std::string& appId,con
             temp++;
             // 检查 res 是否成功
             if (res != CURLE_OK) {
-                std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
+                log.error( "curl_easy_perform() failed: "+ std::string(curl_easy_strerror(res)));
                 readBuffer.clear();  // 清空读取缓冲区
                 if (temp!=5){
-                    sleep(1); // 短连接容灾重试
+                    sleep(time); // 短连接容灾重试
                     log.info("Disaster recovery retry.");
+                    time*=2;
                     continue;
                 }
             }

@@ -239,7 +239,7 @@ void RemoteConfigLongPollService::notifyClients(const std::string& reNamespaceNa
         // 需要验证就需要加秘钥，不需要验证就不加
         newNode->data = std::make_shared<ApolloConfig>(host, appId, cluster, reNamespaceName,secretKey);
         insertNodeHead(newNode);
-        newNode->data->fetchConfigJsonCache(); // 更新结果
+        newNode->data->fetchConfigDatabases(); // 更新从数据库中拿数据，配合配置推送进行更新配置
     }
     log.info(reNamespaceName+" update: "+ apolloconfig[reNamespaceName]->data->getDataString());
     auto apolloval = apolloconfig[reNamespaceName];
