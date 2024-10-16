@@ -1,0 +1,1 @@
+/usr/bin/c++  -O0 -g -Wall -Werror -Wno-deprecated -Wno-unused-function CMakeFiles/test_apollocpp.dir/tests/ApolloConfigTest.cpp.o -o ../bin/test_apollocpp  -Wl,-rpath,/home/aldd/JD/apollo_cpp_sdk/lib:/usr/local/lib: ../lib/libapollocpp_client.so /usr/local/lib/liblog4cpp.so 
